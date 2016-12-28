@@ -1,11 +1,11 @@
 /*
-** raycast.c for raycast in /home/maxime/Programs/Bootstrap/bswolf3d/
+** raycast2.c for raycast in /home/maxime/delivery/MUL/wolf3d/
 **
 ** Made by Maxime JENNY
 ** Login   <maxime.jenny@epitech.eu>
 **
-** Started on  Tue Dec 13 09:46:01 2016 Maxime JENNY
-** Last update Mon Jan  2 10:05:48 2017 Maxime JENNY
+** Started on  Wed Jan  4 14:04:31 2017 Maxime JENNY
+** Last update Wed Jan  4 14:27:27 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <wolf.h>
 
-void		my_find_coords(t_ray *a, t_ray *b, float angle,
+void		my_find_coords2(t_ray *a, t_ray *b, float angle,
 				 sfVector2f pos)
 {
   sfVector2f	p;
@@ -34,7 +34,7 @@ void		my_find_coords(t_ray *a, t_ray *b, float angle,
    b->angle = angle;
 }
 
-double		my_find_dist_horizontal(t_ray a, sfVector2f pos, sfVector2i
+double		my_find_dist_horizontal2(t_ray a, sfVector2f pos, sfVector2i
 					mapSize, int **map)
 {
   sfVector2f	distA;
@@ -56,7 +56,7 @@ double		my_find_dist_horizontal(t_ray a, sfVector2f pos, sfVector2i
   return (dist);
 }
 
-double		my_find_dist_vertical(t_ray b, sfVector2f pos, sfVector2i
+double		my_find_dist_vertical2(t_ray b, sfVector2f pos, sfVector2i
 					mapSize, int **map)
 {
   sfVector2f	distB;
@@ -82,26 +82,30 @@ double		my_find_dist_vertical(t_ray b, sfVector2f pos, sfVector2i
 ** a = premier point sur les horizontaux | b = premier point sur les verticaux
 */
 
-float		raycast(sfVector2f pos, float direction, int **map,
+t_raycast	*raycast2(sfVector2f pos, float direction, int **map,
 			sfVector2i mapSize)
 {
   float		dist1;
   float		dist2;
   t_ray		*a;
   t_ray		*b;
+  t_raycast	*ray;
 
-  if ((a = malloc(sizeof(t_ray))) == NULL || (b = malloc(sizeof(*b))) == NULL)
-    return (-1);
+  if ((ray = malloc(sizeof(t_raycast))) == NULL ||
+      (a = malloc(sizeof(t_ray))) == NULL || (b = malloc(sizeof(*b))) == NULL)
+    return NULL;
   (direction > 360) ? (direction -= 360) : (0);
   (direction < -360) ? (direction += 360) : (0);
-  my_find_coords(a, b, direction, pos);
+  my_find_coords2(a, b, direction, pos);
   dist1 = sqrt((a->u_x * a->u_x) + (a->u_y * a->u_y));
   dist2 = sqrt((b->u_x * b->u_x) + (b->u_y * b->u_y));
   if (direction != 0 && direction != 180 && direction != -180)
-    dist1 = my_find_dist_horizontal(*a, pos, mapSize, map);
+    dist1 = my_find_dist_horizontal2(*a, pos, mapSize, map);
   if (direction != 90 && direction != 270)
-    dist2 = my_find_dist_vertical(*b, pos, mapSize, map);
+    dist2 = my_find_dist_vertical2(*b, pos, mapSize, map);
   free(a);
   free(b);
-  return ((dist1 > dist2) ? (dist2) : (dist1));
+  ray->dist = ((dist1 > dist2) ? (dist2) : (dist1));
+  ray->hor = ((dist1 > dist2) ? (0) : (1));
+  return (ray);
 }

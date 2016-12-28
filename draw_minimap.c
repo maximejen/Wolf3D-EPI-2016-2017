@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 13:01:20 2016 Maxime JENNY
-** Last update Sun Dec 25 18:14:53 2016 Maxime JENNY
+** Last update Mon Jan  2 15:32:03 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -22,17 +22,6 @@
 #include <unistd.h>
 
 #include "wolf.h"
-
-sfColor		my_create_color(int r, int g, int b, int a)
-{
-  sfColor	color;
-
-  color.r = r;
-  color.g = g;
-  color.b = b;
-  color.a = a;
-  return (color);
-}
 
 void	draw_square(t_my_framebuffer *display, sfVector2i from, sfVector2i size,
 		    sfColor color)
@@ -60,10 +49,12 @@ void		draw_minimap(int **map, t_my_framebuffer *display,
 {
   sfVector2i	from;
   sfVector2i	size;
+  float		scale;
 
   from.y = 0;
-  size.x = SCALE;
-  size.y = SCALE;
+  scale = SCALE;
+  size.x = scale / mapSize_x;
+  size.y = scale / mapSize_y;
   while (from.y < mapSize_y)
     {
       from.x = 0;

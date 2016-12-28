@@ -5,7 +5,7 @@
 ## Login   <maxime.jenny@epitech.eu>
 ##
 ## Started on  Tue Nov 22 14:44:48 2016 Maxime JENNY
-## Last update Mon Dec 26 17:54:31 2016 Maxime JENNY
+## Last update Wed Jan  4 14:51:43 2017 Maxime JENNY
 ##
 
 SRC = main.c	\
@@ -18,7 +18,10 @@ SRC = main.c	\
 			src/move_forward.c	\
 			src/raycast.c	\
 			wolf.c	\
-			event.c
+			event.c	\
+			utility.c	\
+			textures.c	\
+			raycast2.c
 
 NAME	=	wolf3d
 
@@ -26,7 +29,7 @@ OBJ	=	$(SRC:.c=.o)
 
 FLAGS	=	-lm -lc_graph_prog -W -Wextra -Wall -Werror -pedantic
 
-CFLAGS += -I./include -g
+CFLAGS += -I./include -O3
 
 all:	$(NAME)
 

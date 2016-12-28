@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:17:17 2016 Maxime JENNY
-** Last update Mon Dec 26 16:29:21 2016 Maxime JENNY
+** Last update Wed Jan  4 15:32:31 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -66,8 +66,6 @@ static void	my_find_wolf(t_wolf **wolf)
 	  (*wolf)->height += 1;
 	}
     }
-  (*wolf)->player_x = 1.5;
-  (*wolf)->player_y = 1.5;
 }
 
 int		my_open_file(int fd, t_wolf **wolf, char *path)
@@ -89,7 +87,10 @@ int		my_open_file(int fd, t_wolf **wolf, char *path)
     return (-1);
   (*wolf)->buffer[bufsize] = '\0';
   my_find_wolf(wolf);
-  (*wolf)->angle = 0;
+  (*wolf)->tog[0] = 0;
+  (*wolf)->tog[1] = 1;
+  (*wolf)->tog[2] = 1;
+  (*wolf)->tog[3] = 1;
   return (0);
 }
 
@@ -99,20 +100,19 @@ static void		window_life(t_wolf **wolf, sfSprite *sprite,
   t_my_framebuffer	*disp;
   sfEvent		event;
 
+  my_set_player_pos(*wolf);
   disp = my_framebuffer_create(WIDTH, HEIGHT);
   sfSprite_setTexture(sprite, texture, sfTrue);
   while (sfRenderWindow_isOpen(window))
     {
       while (sfRenderWindow_pollEvent(window, &event))
 	{
+	  if (event.type == sfEvtKeyPressed)
+	    what_key_is_pressed(&event, wolf);
 	  if (event.type == sfEvtClosed || (is_esc_pressed(&event) == 1))
 	    sfRenderWindow_close(window);
-	  else if (event.type == sfEvtKeyPressed)
-	    what_key_is_pressed(&event, wolf);
 	}
-      reset_framebuffer(&disp, 0);
-      sfRenderWindow_clear(window, my_create_color(0, 167, 255, 255));
-      draw_minimap((*wolf)->map, disp, (*wolf)->width, (*wolf)->height);
+      sfRenderWindow_clear(window, my_create_color(200, 200, 200, 255));
       my_draw_wolf(*wolf, disp);
       sfTexture_updateFromPixels(texture, disp->pixels, WIDTH, HEIGHT, 0, 0);
       sfRenderWindow_drawSprite(window, sprite, NULL);

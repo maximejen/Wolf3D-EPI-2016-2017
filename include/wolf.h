@@ -5,23 +5,30 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 10:05:45 2016 Maxime JENNY
-** Last update Mon Dec 26 17:53:06 2016 Maxime JENNY
+** Last update Wed Jan  4 14:38:53 2017 Maxime JENNY
 */
 
 #ifndef WOLF_H_
 # define WOLF_H_
 
 # define SIZE 100
-# define WIDTH 1280
-# define HEIGHT 720
-# define FOV 80
-# define SCALE 30
+# define WIDTH 1920
+# define HEIGHT 1080
+# define FOV 70
+# define SCALE 175
+# define CHANGE_ANGLE 2
+
+typedef struct		s_raycast
+{
+  float			dist;
+  int			hor;
+  float			angle;
+}			t_raycast;
 
 typedef struct		s_ray
 {
   double		u_x;
   double		u_y;
-  float			hyp;
   float			angle;
 }			t_ray;
 
@@ -34,6 +41,7 @@ typedef struct		s_wolf
   float			player_x;
   float			player_y;
   float			angle;
+  char			tog[4];
 }			t_wolf;
 
 typedef struct		s_my_framebuffer
@@ -61,5 +69,15 @@ void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display);
 void		reset_framebuffer(t_my_framebuffer **display, int nbr);
 int		is_esc_pressed(sfEvent *event);
 sfColor		my_create_color(int r, int g, int b, int a);
+void	my_draw_line_two(t_my_framebuffer *framebuffer, sfVector2i *from,
+			     sfVector2i *to, sfColor color);
+sfVector2i	my_create_vector(int x, int y);
+void	my_draw_square(t_my_framebuffer *display, sfVector2i from,
+		       sfVector2i size, sfColor color);
+void		my_set_player_pos(t_wolf *wolf);
+void		shadows(t_raycast *ray, sfVector2f player, int i,
+			t_my_framebuffer *display);
+t_raycast	*raycast2(sfVector2f pos, float direction, int **map,
+			  sfVector2i mapSize);
 
 #endif /* WOLF_H_ */
