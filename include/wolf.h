@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 10:05:45 2016 Maxime JENNY
-** Last update Fri Dec 23 16:40:30 2016 Maxime JENNY
+** Last update Mon Dec 26 17:53:06 2016 Maxime JENNY
 */
 
 #ifndef WOLF_H_
@@ -60,5 +60,6 @@ void		what_key_is_pressed(sfEvent *event, t_wolf **wolf);
 void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display);
 void		reset_framebuffer(t_my_framebuffer **display, int nbr);
 int		is_esc_pressed(sfEvent *event);
+sfColor		my_create_color(int r, int g, int b, int a);
 
 #endif /* WOLF_H_ */

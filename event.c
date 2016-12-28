@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 22:46:00 2016 Maxime JENNY
-** Last update Fri Dec 23 17:02:17 2016 Maxime JENNY
+** Last update Wed Dec 28 14:12:45 2016 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
@@ -27,9 +27,9 @@ void		what_key_is_pressed(sfEvent *event, t_wolf **wolf)
   player.x = (*wolf)->player_x;
   player.y = (*wolf)->player_y;
   if (event->key.code == sfKeyD || event->key.code == sfKeyRight)
-    (*wolf)->angle = ((int)(*wolf)->angle + 1) % 360;
+    (*wolf)->angle = (*wolf)->angle + 1;
   else if (event->key.code == sfKeyQ || event->key.code == sfKeyLeft)
-    (*wolf)->angle = ((int)(*wolf)->angle - 1) % 360;
+    (*wolf)->angle = (*wolf)->angle - 1;
   else if (event->key.code == sfKeyZ)
     player = move_forward(player, (*wolf)->angle, 0.03);
   else if (event->key.code == sfKeyS)

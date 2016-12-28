@@ -5,7 +5,7 @@
 ## Login   <maxime.jenny@epitech.eu>
 ##
 ## Started on  Tue Nov 22 14:44:48 2016 Maxime JENNY
-## Last update Thu Dec 22 23:59:32 2016 Maxime JENNY
+## Last update Mon Dec 26 17:54:31 2016 Maxime JENNY
 ##
 
 SRC = main.c	\
@@ -26,7 +26,7 @@ OBJ	=	$(SRC:.c=.o)
 
 FLAGS	=	-lm -lc_graph_prog -W -Wextra -Wall -Werror -pedantic
 
-CFLAGS += -I./include
+CFLAGS += -I./include -g
 
 all:	$(NAME)
 

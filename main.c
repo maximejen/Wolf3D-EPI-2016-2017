@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:17:17 2016 Maxime JENNY
-** Last update Thu Dec 22 11:48:08 2016 Maxime JENNY
+** Last update Mon Dec 26 16:29:21 2016 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -111,7 +111,7 @@ static void		window_life(t_wolf **wolf, sfSprite *sprite,
 	    what_key_is_pressed(&event, wolf);
 	}
       reset_framebuffer(&disp, 0);
-      sfRenderWindow_clear(window, sfBlack);
+      sfRenderWindow_clear(window, my_create_color(0, 167, 255, 255));
       draw_minimap((*wolf)->map, disp, (*wolf)->width, (*wolf)->height);
       my_draw_wolf(*wolf, disp);
       sfTexture_updateFromPixels(texture, disp->pixels, WIDTH, HEIGHT, 0, 0);
@@ -141,7 +141,6 @@ int			main(int argc, char **argv)
       sprite = sfSprite_create();
       if (my_open_file(fd, &wolf, argv[1]) == -1)
 	return (84);
-      mapSize.x += wolf->width + 0 * (mapSize.y = wolf->height);
       get_matrice(&wolf);
       window_life(&wolf, sprite, texture, window);
       sfRenderWindow_destroy(window);
