@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Jan  4 14:04:31 2017 Maxime JENNY
-** Last update Wed Jan  4 14:27:27 2017 Maxime JENNY
+** Last update Wed Jan  4 23:56:17 2017 
 */
 
 #include <SFML/System.h>
@@ -93,7 +93,7 @@ t_raycast	*raycast2(sfVector2f pos, float direction, int **map,
 
   if ((ray = malloc(sizeof(t_raycast))) == NULL ||
       (a = malloc(sizeof(t_ray))) == NULL || (b = malloc(sizeof(*b))) == NULL)
-    return NULL;
+    return (NULL);
   (direction > 360) ? (direction -= 360) : (0);
   (direction < -360) ? (direction += 360) : (0);
   my_find_coords2(a, b, direction, pos);
