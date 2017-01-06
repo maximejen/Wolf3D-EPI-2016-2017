@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu@epitech.eu>
 **
 ** Started on  Thu Nov 10 13:07:19 2016 Maxime JENNY
-** Last update Fri Dec 23 00:24:56 2016 Maxime JENNY
+** Last update Fri Jan  6 00:07:49 2017 Maxime JENNY
 */
 
 #include <SFML/Audio/SoundStatus.h>
@@ -30,7 +30,7 @@ sfRenderWindow		*open_window(sfRenderWindow *window)
   mode.bitsPerPixel = 32;
   mode.width = WIDTH;
   mode.height = HEIGHT;
-  window = sfRenderWindow_create(mode, "Wolf3D", sfClose, NULL);
+  window = sfRenderWindow_create(mode, "Wolf3D", sfClose | sfResize, NULL);
   return (window);
 }
 
@@ -38,9 +38,15 @@ t_my_framebuffer	*my_framebuffer_create(int width, int height)
 {
   int			i;
   t_my_framebuffer	*display;
+  sfUint8		*pixels;
 
   display = malloc(sizeof(t_my_framebuffer));
-  display->pixels = malloc(width * height * 4 * sizeof(display->pixels));
+  if (display == NULL)
+    return (NULL);
+  pixels = malloc(width * height * 4 * sizeof(pixels));
+  if (pixels == NULL)
+    return (NULL);
+  display->pixels = pixels;
   i = 0;
   while (i < width * height * 4)
     {

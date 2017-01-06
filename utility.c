@@ -5,13 +5,14 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 28 22:29:55 2016 Maxime JENNY
-** Last update Mon Jan  2 10:21:20 2017 Maxime JENNY
+** Last update Thu Jan  5 23:32:09 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "wolf.h"
 
 void		my_set_player_pos(t_wolf *wolf)
@@ -37,12 +38,14 @@ void		my_set_player_pos(t_wolf *wolf)
   (y != 0 && wolf->map[y - 1][x] == 0) ? (wolf->angle = 270) : (0);
 }
 
-sfVector2i	my_create_vector(int x, int y)
+sfVector2i	*my_create_vector(int x, int y)
 {
-  sfVector2i	vector;
+  sfVector2i	*vector;
 
-  vector.x = x;
-  vector.y = y;
+  if (vector = malloc(sizeof(sfVector2i)))
+    return (NULL);
+  vector->x = x;
+  vector->y = y;
   return (vector);
 }
 

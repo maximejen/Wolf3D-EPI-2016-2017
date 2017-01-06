@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 09:11:28 2016 Maxime JENNY
-** Last update Mon Jan  2 14:35:37 2017 Maxime JENNY
+** Last update Thu Jan  5 22:18:18 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics/RenderWindow.h>
@@ -20,6 +20,8 @@ void	my_draw_line(t_my_framebuffer *framebuffer, sfVector2i from,
   float yc;
   double count;
   float d;
+  float x;
+  float y;
 
   xc = to.x - from.x;
   yc = to.y - from.y;
@@ -27,8 +29,8 @@ void	my_draw_line(t_my_framebuffer *framebuffer, sfVector2i from,
   d = 0;
   while (d <= 1)
     {
-      float x = from.x + xc * d;
-      float y = from.y + yc * d;
+      x = from.x + xc * d;
+      y = from.y + yc * d;
       my_put_pixel(framebuffer, x, y, color);
       d += count + 0.0000001;
     }

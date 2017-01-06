@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:17:17 2016 Maxime JENNY
-** Last update Wed Jan  4 15:32:31 2017 Maxime JENNY
+** Last update Fri Jan  6 00:01:35 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -35,7 +35,7 @@ int	find_size_file(int fd)
     {
       i = read(fd, buf, 1);
       if (i == -1)
-	return (-1);
+	      return (-1);
       size += i;
     }
   close(fd);
@@ -94,14 +94,15 @@ int		my_open_file(int fd, t_wolf **wolf, char *path)
   return (0);
 }
 
-static void		window_life(t_wolf **wolf, sfSprite *sprite,
+static void		window_life(t_wolf *wolf, sfSprite *sprite,
 				    sfTexture *texture, sfRenderWindow *window)
 {
   t_my_framebuffer	*disp;
   sfEvent		event;
 
-  my_set_player_pos(*wolf);
-  disp = my_framebuffer_create(WIDTH, HEIGHT);
+  my_set_player_pos(wolf);
+  if ((disp = my_framebuffer_create(WIDTH, HEIGHT)) == NULL)
+    return ;
   sfSprite_setTexture(sprite, texture, sfTrue);
   while (sfRenderWindow_isOpen(window))
     {
@@ -112,8 +113,8 @@ static void		window_life(t_wolf **wolf, sfSprite *sprite,
 	  if (event.type == sfEvtClosed || (is_esc_pressed(&event) == 1))
 	    sfRenderWindow_close(window);
 	}
-      sfRenderWindow_clear(window, my_create_color(200, 200, 200, 255));
-      my_draw_wolf(*wolf, disp);
+      sfRenderWindow_clear(window, sfWhite);
+      my_draw_wolf(wolf, disp);
       sfTexture_updateFromPixels(texture, disp->pixels, WIDTH, HEIGHT, 0, 0);
       sfRenderWindow_drawSprite(window, sprite, NULL);
       sfRenderWindow_display(window);
@@ -142,7 +143,8 @@ int			main(int argc, char **argv)
       if (my_open_file(fd, &wolf, argv[1]) == -1)
 	return (84);
       get_matrice(&wolf);
-      window_life(&wolf, sprite, texture, window);
+      free(wolf->buffer);
+      window_life(wolf, sprite, texture, window);
       sfRenderWindow_destroy(window);
       return (0);
     }
