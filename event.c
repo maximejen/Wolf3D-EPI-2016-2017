@@ -5,17 +5,19 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 22:46:00 2016 Maxime JENNY
-** Last update Thu Jan  5 22:56:52 2017 Maxime JENNY
+** Last update Sun Jan 15 13:41:12 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <SFML/Window.h>
 #include <stdio.h>
 #include <math.h>
+#include <SFML/Audio.h>
 #include "wolf.h"
-#include "include/wolf.h"
 
-sfVector2f	move(sfVector2f *player, t_wolf *wolf, float distance, int straf)
+sfVector2f	move(sfVector2f *player, t_wolf *wolf, float distance,
+		     int straf)
 {
   int		y;
   int		x;
@@ -26,7 +28,7 @@ sfVector2f	move(sfVector2f *player, t_wolf *wolf, float distance, int straf)
   (straf != 1) ? (distance /= 2) : (0);
   x = (int)(player->x + cos(angle * M_PI / 180) * distance);
   y = (int)(player->y + sin(angle * M_PI / 180) * distance);
-  if (wolf->map[y][x])
+  if (wolf->map[y][x] != 0 && wolf->map[y][x] != 'O' && wolf->map[y][x] != 'K')
     return (*player);
   else
     *player = move_forward(*player, angle, distance);
@@ -40,10 +42,48 @@ int	is_esc_pressed(sfEvent *event)
   return (0);
 }
 
-void		what_key_is_pressed2(sfEvent *event, t_wolf *wolf)
+void		door_handling(t_wolf *wolf, sfVector2f p)
+{
+  sfVector2f	door;
+  sfVector2f	key;
+
+ if (sfKeyboard_isKeyPressed(sfKeyE))
+    {
+      door = move_forward(p, wolf->angle, 1);
+      key = move_forward(p, wolf->angle, 0.7);
+      if (wolf->map[(int)(door.y)][(int)(door.x)] == 'C')
+	{
+	  (wolf->keys > 0) ? (wolf->map[(int)door.y][(int)door.x] = 'O') : (0);
+	  (wolf->keys > 0) ? (wolf->keys -= 1) : (0);
+	}
+      else if (wolf->map[(int)(door.y)][(int)(door.x)] == 'O')
+	(wolf->map[(int)door.y][(int)door.x] = 'U');
+      else if (wolf->map[(int)(door.y)][(int)(door.x)] == 'U')
+	(wolf->map[(int)door.y][(int)door.x] = 'O');
+      if (wolf->map[(int)(key.y)][(int)(key.x)] == 'K')
+	{
+	  wolf->map[(int)(key.y)][(int)(key.x)] = 0;
+	  find_and_kill_key((int)key.y, (int)key.x, wolf);
+	  wolf->keys += 1;
+	}
+    }
+  if (sfKeyboard_isKeyPressed(sfKeyT))
+    wolf->keys += 1;
+}
+
+void		what_key_is_press(sfEvent *event, t_wolf *wolf, sfVector2f p)
 {
   if (sfKeyboard_isKeyPressed(sfKeyP))
     (wolf->tog[3] == 1) ? (wolf->tog[3] = 0) : (wolf->tog[3] = 1);
+  if (sfKeyboard_isKeyPressed(sfKeyO))
+    (wolf->tog[4] == 1) ? (wolf->tog[4] = 0) : (wolf->tog[4] = 1);
+  if (event->type == sfEvtMouseButtonPressed &&
+      event->mouseButton.button == sfMouseLeft && wolf->time == 0)
+	{
+	  wolf->time = 5;
+	  sfMusic_play(wolf->mseize);
+	}
+  door_handling(wolf, p);
 }
 
 /*
@@ -74,7 +114,7 @@ void		what_key_is_pressed(sfEvent *event, t_wolf *wolf)
     player = move(&player, wolf, -0.05, 0);
   if (sfKeyboard_isKeyPressed(sfKeyLControl))
     (wolf->tog[0] == 1) ? (wolf->tog[0] = 0) : (wolf->tog[0] = 1);
-  what_key_is_pressed2(event, wolf);
+  what_key_is_press(event, wolf, player);
   wolf->player_x = player.x;
   wolf->player_y = player.y;
 }

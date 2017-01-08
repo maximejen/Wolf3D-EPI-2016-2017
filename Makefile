@@ -5,24 +5,33 @@
 ## Login   <maxime.jenny@epitech.eu>
 ##
 ## Started on  Tue Nov 22 14:44:48 2016 Maxime JENNY
-## Last update Fri Jan  6 00:21:25 2017 Maxime JENNY
+## Last update Sun Jan 15 13:41:04 2017 Maxime JENNY
 ##
 
-SRC = main.c	\
-			my_str_to_wordtab.c	\
-			my_getnbr.c	\
-			open_window.c	\
-			draw_minimap.c	\
-			src/my_put_pixel.c	\
-			src/my_draw_line.c	\
-			src/move_forward.c	\
-			src/raycast.c	\
-			wolf.c	\
-			event.c	\
-			utility.c	\
-			textures.c	\
-			raycast2.c	\
-			move_foward2.c
+SRC	=	main.c	\
+		my_str_to_wordtab.c	\
+		my_getnbr.c	\
+		open_window.c	\
+		draw_minimap.c	\
+		src/my_put_pixel.c	\
+		src/my_draw_line.c	\
+		src/move_forward.c	\
+		src/raycast.c	\
+		wolf.c	\
+		event.c	\
+		utility.c	\
+		textures.c	\
+		raycast2.c	\
+		move_foward2.c	\
+		load_textures.c	\
+		load_texture2.c	\
+		move_mouse.c	\
+		load_texture3.c	\
+		free.c	\
+		obj.c	\
+		ob.c	\
+		event_two.c	\
+		my_strcat.c
 
 NAME	=	wolf3d
 
@@ -30,7 +39,7 @@ OBJ	=	$(SRC:.c=.o)
 
 FLAGS	=	-lm -lc_graph_prog -W -Wextra -Wall -Werror -pedantic
 
-CFLAGS += -I./include
+CFLAGS	+=	-I./include
 
 all:	$(NAME)
 

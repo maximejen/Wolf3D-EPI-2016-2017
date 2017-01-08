@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:46:01 2016 Maxime JENNY
-** Last update Thu Jan  5 17:37:29 2017 Maxime JENNY
+** Last update Fri Jan 13 15:11:46 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -92,11 +92,12 @@ float		raycast(sfVector2f pos, float direction, int **map,
 
   if ((a = malloc(sizeof(t_ray))) == NULL || (b = malloc(sizeof(*b))) == NULL)
     return (-1);
-  direction = fmodf(direction, 360);
+  (direction > 360) ? (direction -= 360) : (0);
+  (direction < 0) ? (direction += 360) : (0);
   my_find_coords(a, b, direction, pos);
   dist1 = sqrt((a->u_x * a->u_x) + (a->u_y * a->u_y));
   dist2 = sqrt((b->u_x * b->u_x) + (b->u_y * b->u_y));
-  if (direction != 0 && direction != 180 && direction != -180)
+  if (direction != 0 && direction != 180)
     dist1 = my_find_dist_horizontal(*a, pos, mapSize, map);
   if (direction != 90 && direction != 270)
     dist2 = my_find_dist_vertical(*b, pos, mapSize, map);

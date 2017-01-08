@@ -5,13 +5,14 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 23:25:05 2016 Maxime JENNY
-** Last update Fri Jan  6 00:25:46 2017 Maxime JENNY
+** Last update Sun Jan 15 12:58:18 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "wolf.h"
 
 void		my_draw_ground(t_my_framebuffer *display)
@@ -40,7 +41,7 @@ void		my_draw_player_in_map(sfVector2f player, float angle,
 {
   sfVector2i	to;
   sfVector2i	from;
-  double	dist;
+  t_raycast	*ray;
   float		scale;
   float		scale1;
 
@@ -59,9 +60,9 @@ void		my_draw_player_in_map(sfVector2f player, float angle,
   my_put_pixel(display, player.x * scale - 1, player.y * scale1 + 1, sfRed);
   my_put_pixel(display, player.x * scale, player.y * scale1, sfRed);
   to.x = wolf->width + 0 * (to.y = wolf->height);
-  dist = raycast(player, angle, wolf->map, to);
-  to.x = cos(angle * M_PI / 180) * dist * scale + from.x;
-  to.y = sin(angle * M_PI / 180) * dist * scale1 + from.y;
+  ray = raycast2(&player, &angle, wolf->map, &to);
+  to.x = cos(angle * M_PI / 180) * ray->d * scale + from.x;
+  to.y = sin(angle * M_PI / 180) * ray->d * scale1 + from.y;
   my_draw_line2(display, &from, &to, my_create_color(211, 81, 0, 255));
 }
 
@@ -86,7 +87,7 @@ void		my_draw_walls(t_my_framebuffer *display, t_wolf *wolf,
       ray->angle = angle;
       if (wolf->tog[1] == 1)
 	ray->d = ray->d * cos((angle - wolf->angle) * M_PI / 180);
-      shadows(ray, player, i, display);
+      shadows(ray, wolf, i, display);
       angle += delt_a;
     }
 }
@@ -116,7 +117,8 @@ void		my_draw_sky(t_my_framebuffer *display)
     }
 }
 
-void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display)
+void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display,
+			     sfTexture*texture)
 {
   sfVector2f	player;
   sfVector2i	mapSize;
@@ -131,4 +133,5 @@ void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display)
       draw_minimap(wolf->map, display, wolf->width, wolf->height);
       my_draw_player_in_map(player, wolf->angle, display, wolf);
     }
+  draw_objects(display, wolf);
 }

@@ -5,7 +5,7 @@
 ** Login   <Maxime@epitech.net>
 **
 ** Started on  Thu Oct  6 19:18:32 2016 Maxime JENNY
-** Last update Tue Dec 13 11:15:41 2016 Maxime JENNY
+** Last update Fri Jan  6 11:15:01 2017 Maxime JENNY
 */
 
 int		my_get_number(char *str, int *i)
@@ -14,6 +14,9 @@ int		my_get_number(char *str, int *i)
 
   if (str[*i] == '\n')
     *i = *i + 1;
-  nbr = str[*i] - 48;
+  if (str[*i] <= '9' && str[*i] >= '0')
+    nbr = str[*i] - 48;
+  else
+    nbr = str[*i];
   return (nbr);
 }

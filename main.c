@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:17:17 2016 Maxime JENNY
-** Last update Fri Jan  6 00:01:35 2017 Maxime JENNY
+** Last update Sun Jan 15 12:57:40 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -66,9 +66,11 @@ static void	my_find_wolf(t_wolf **wolf)
 	  (*wolf)->height += 1;
 	}
     }
+  (*wolf)->keys = 0;
+  (*wolf)->time = 0;
 }
 
-int		my_open_file(int fd, t_wolf **wolf, char *path)
+int		my_open_file(int fd, t_wolf *wolf, char *path)
 {
   int		rd;
   int		bufsize;
@@ -79,18 +81,21 @@ int		my_open_file(int fd, t_wolf **wolf, char *path)
   if ((fd2 = open(path, O_RDONLY)) == -1)
     return (-1);
   bufsize = find_size_file(fd2);
-  if (((*wolf)->buffer = malloc(bufsize + 1)) == NULL)
+  if ((wolf->buffer = malloc(bufsize + 1)) == NULL)
     return (-1);
-  while ((rd = read(fd, (*wolf)->buffer + buf, bufsize - buf)) > 0)
+  while ((rd = read(fd, wolf->buffer + buf, bufsize - buf)) > 0)
     buf += rd;
   if (rd == -1)
     return (-1);
-  (*wolf)->buffer[bufsize] = '\0';
-  my_find_wolf(wolf);
-  (*wolf)->tog[0] = 0;
-  (*wolf)->tog[1] = 1;
-  (*wolf)->tog[2] = 1;
-  (*wolf)->tog[3] = 1;
+  wolf->buffer[bufsize] = '\0';
+  my_find_wolf(&wolf);
+  if ((wolf->text = malloc(sizeof(t_texture))) == NULL)
+    return (-1);
+  if (load_textures(wolf) == -1)
+    return (-1);
+  wolf->tog[0] = 0 + 0 * (wolf->health = 10);
+  wolf->tog[1] = 1 + 0 * (wolf->tog[2] = 1) + 0 * (wolf->tog[3] = 1);
+  wolf->tog[4] = 0;
   return (0);
 }
 
@@ -98,29 +103,28 @@ static void		window_life(t_wolf *wolf, sfSprite *sprite,
 				    sfTexture *texture, sfRenderWindow *window)
 {
   t_my_framebuffer	*disp;
-  sfEvent		event;
+  sfEvent		e;
 
   my_set_player_pos(wolf);
+  my_load_music(wolf);
   if ((disp = my_framebuffer_create(WIDTH, HEIGHT)) == NULL)
     return ;
   sfSprite_setTexture(sprite, texture, sfTrue);
   while (sfRenderWindow_isOpen(window))
     {
-      while (sfRenderWindow_pollEvent(window, &event))
+      while (sfRenderWindow_pollEvent(window, &e))
 	{
-	  if (event.type == sfEvtKeyPressed)
-	    what_key_is_pressed(&event, wolf);
-	  if (event.type == sfEvtClosed || (is_esc_pressed(&event) == 1))
+	  if (e.type == sfEvtMouseButtonPressed || e.type == sfEvtKeyPressed)
+	    what_key_is_pressed(&e, wolf);
+	  if (e.type == sfEvtClosed || (is_esc_pressed(&e) == 1))
 	    sfRenderWindow_close(window);
 	}
       sfRenderWindow_clear(window, sfWhite);
-      my_draw_wolf(wolf, disp);
+      my_move_mouse(window, wolf);
+      my_draw_wolf(wolf, disp, texture);
       sfTexture_updateFromPixels(texture, disp->pixels, WIDTH, HEIGHT, 0, 0);
-      sfRenderWindow_drawSprite(window, sprite, NULL);
-      sfRenderWindow_display(window);
+      draw_sprites(texture, sprite, wolf, window);
     }
-  free(disp->pixels);
-  free(disp);
 }
 
 int			main(int argc, char **argv)
@@ -140,12 +144,13 @@ int			main(int argc, char **argv)
       window = open_window(window);
       texture = sfTexture_create(WIDTH, HEIGHT);
       sprite = sfSprite_create();
-      if (my_open_file(fd, &wolf, argv[1]) == -1)
+      if (my_open_file(fd, wolf, argv[1]) == -1)
 	return (84);
-      get_matrice(&wolf);
+      get_matrice(wolf);
+      set_object_pos(wolf);
       free(wolf->buffer);
       window_life(wolf, sprite, texture, window);
-      sfRenderWindow_destroy(window);
+      my_free(wolf, window, sprite, texture);
       return (0);
     }
   return (84);

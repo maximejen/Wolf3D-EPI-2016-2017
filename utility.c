@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 28 22:29:55 2016 Maxime JENNY
-** Last update Thu Jan  5 23:32:09 2017 Maxime JENNY
+** Last update Sat Jan  7 19:20:25 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
@@ -26,9 +26,7 @@ void		my_set_player_pos(t_wolf *wolf)
     {
       x = 0;
       while (x < wolf->width && wolf->map[y][x] != 0)
-
-   x++;
-
+	x++;
     }
   wolf->player_x = x + 0.5;
   wolf->player_y = y + 0.5;
