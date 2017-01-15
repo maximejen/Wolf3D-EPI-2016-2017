@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@@epitech.eu>
 **
 ** Started on  Fri Jan 13 17:02:49 2017 Maxime JENNY
-** Last update Sun Jan 15 13:28:33 2017 Maxime JENNY
+** Last update Sun Jan 15 14:16:48 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -39,7 +39,7 @@ sfVector2i	cal_pos(t_my_framebuffer *obj, float angle, sfVector2i height)
 {
   sfVector2i	pos;
 
-  pos.x = FOV * angle + (HEIGHT / 2) - (obj->width / 2);
+  pos.x = ((WIDTH / 2) - (obj->width / 2)) + angle * FOV * 10;
   pos.y = HEIGHT / 2 - height.y / 2;
   return (pos);
 }

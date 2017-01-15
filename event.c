@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 22:46:00 2016 Maxime JENNY
-** Last update Sun Jan 15 13:41:12 2017 Maxime JENNY
+** Last update Sun Jan 15 19:34:34 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
@@ -66,9 +66,8 @@ void		door_handling(t_wolf *wolf, sfVector2f p)
 	  find_and_kill_key((int)key.y, (int)key.x, wolf);
 	  wolf->keys += 1;
 	}
+      check_wall(wolf, door);
     }
-  if (sfKeyboard_isKeyPressed(sfKeyT))
-    wolf->keys += 1;
 }
 
 void		what_key_is_press(sfEvent *event, t_wolf *wolf, sfVector2f p)

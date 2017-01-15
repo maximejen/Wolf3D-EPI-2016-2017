@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:17:17 2016 Maxime JENNY
-** Last update Sun Jan 15 12:57:40 2017 Maxime JENNY
+** Last update Sun Jan 15 19:41:48 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -93,7 +93,7 @@ int		my_open_file(int fd, t_wolf *wolf, char *path)
     return (-1);
   if (load_textures(wolf) == -1)
     return (-1);
-  wolf->tog[0] = 0 + 0 * (wolf->health = 10);
+  wolf->tog[0] = 0 + 0 * (wolf->stele = 0);
   wolf->tog[1] = 1 + 0 * (wolf->tog[2] = 1) + 0 * (wolf->tog[3] = 1);
   wolf->tog[4] = 0;
   return (0);
@@ -110,7 +110,7 @@ static void		window_life(t_wolf *wolf, sfSprite *sprite,
   if ((disp = my_framebuffer_create(WIDTH, HEIGHT)) == NULL)
     return ;
   sfSprite_setTexture(sprite, texture, sfTrue);
-  while (sfRenderWindow_isOpen(window))
+  while (sfRenderWindow_isOpen(window) && wolf->stele < wolf->nbr_stele)
     {
       while (sfRenderWindow_pollEvent(window, &e))
 	{

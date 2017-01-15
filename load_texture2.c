@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@@epitech.eu>
 **
 ** Started on  Fri Jan  6 15:01:41 2017 Maxime JENNY
-** Last update Wed Jan 11 15:36:36 2017 Maxime JENNY
+** Last update Sun Jan 15 19:25:22 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -128,7 +128,7 @@ int		load(t_wolf *wolf, char **paths, t_reader *rder)
 
   y = 0;
   good = 0;
-  while (y < 8)
+  while (y < 9)
     {
       if ((fd = open(paths[y], O_RDONLY)) == -1)
 	return (-1);

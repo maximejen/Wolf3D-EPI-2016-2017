@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@@epitech.eu>
 **
 ** Started on  Fri Jan  6 12:52:23 2017 Maxime JENNY
-** Last update Sun Jan 15 13:30:27 2017 Maxime JENNY
+** Last update Sun Jan 15 19:26:02 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -76,6 +76,8 @@ int		create_buffers(t_wolf *wolf, t_reader *reader)
     return (-1);
   if ((wolf->text->cp = my_framebuffer_create(1280, 720)) == NULL)
     return (-1);
+  if ((wolf->text->wall = my_framebuffer_create(64, 64)) == NULL)
+    return (-1);
   return (0);
 }
 
@@ -87,7 +89,7 @@ char		**concat_str(char **paths)
 
   if ((str = malloc(45)) == NULL || (str2 = malloc(45)) == NULL)
     return (NULL);
-  str = my_strdup("./resources/wall3.bmp ./resources/weapon.bmp");
+  str = my_strdup("./resources/wall1.bmp ./resources/weapon.bmp");
   str2 = my_strdup(" ./resources/wall3.bmp ./resources/wall4.bmp");
   str[44] = '\0';
   str2[44] = '\0';
@@ -96,7 +98,10 @@ char		**concat_str(char **paths)
   str2 = my_strdup(" ./resources/wall5.bmp ./resources/KEY.bmp");
   str3 = str2;
   str = my_strcat(str, str2);
-  str2 = my_strdup(" ./resources/Interface.bmp ./resources/weapon_fire.bmp\0");
+  str2 = my_strdup(" ./resources/Interface.bmp ./resources/weapon_fire.bmp");
+  str3 = str2;
+  str = my_strcat(str, str2);
+  str2 = my_strdup(" ./resources/3.bmp\0");
   paths = my_str_to_wordtab(my_strcat(str, str2));
   free(str);
   free(str2);
@@ -129,7 +134,6 @@ int		load_textures(t_wolf *wolf)
   sfTexture_updateFromPixels(wolf->text->keyt, wolf->text->key->pixels,
 			     500, 500, 0, 0);
   set(wolf, reader);
-  cp_frambuffer(wolf->text->cp, wolf->text->inter);
   wolf->reader = reader;
   return (0);
 }

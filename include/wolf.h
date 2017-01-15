@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 10:05:45 2016 Maxime JENNY
-** Last update Sun Jan 15 13:39:17 2017 Maxime JENNY
+** Last update Sun Jan 15 19:39:36 2017 Maxime JENNY
 */
 
 #ifndef WOLF_H_
@@ -37,6 +37,7 @@ typedef struct		s_texture
   t_my_framebuffer	*key;
   t_my_framebuffer	*inter;
   t_my_framebuffer	*weapf;
+  t_my_framebuffer	*wall;
   t_my_framebuffer	*cp;
   sfTexture		*texture1;
   sfTexture		*texture2;
@@ -46,6 +47,7 @@ typedef struct		s_texture
   sfTexture		*keyt;
   sfTexture		*intert;
   sfTexture		*weapft;
+  sfTexture		*wallt;
   sfSprite		*sprite1;
   sfSprite		*sprite2;
   sfSprite		*sprite3;
@@ -54,6 +56,7 @@ typedef struct		s_texture
   sfSprite		*keys;
   sfSprite		*inters;
   sfSprite		*weapfs;
+  sfSprite		*wallss;
 }			t_texture;
 
 typedef struct		s_raycast
@@ -96,11 +99,12 @@ typedef struct		s_wolf
   t_reader		*reader;
   t_raycast		*ray;
   int			keys;
-  int			health;
+  int			stele;
   int			time;
   float			**key_pos;
   int			nbr_keys;
   sfMusic		*mseize;
+  int			nbr_stele;
 }			t_wolf;
 
 int		my_get_number(char *str, int *i);
@@ -161,5 +165,7 @@ void			draw_textu(sfVector2i dim, sfVector2i pos,
 void		draw_objects(t_my_framebuffer *display, t_wolf *wolf);
 void		cp_frambuffer(t_my_framebuffer *one, t_my_framebuffer *two);
 void	find_and_kill_key(int y, int x, t_wolf *wolf);
+int		can_do_it(t_wolf *wolf, sfVector2f key, float angle);
+void		check_wall(t_wolf *wolf, sfVector2f door);
 
 #endif /* WOLF_H_ */

@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@@epitech.eu>
 **
 ** Started on  Wed Jan 11 14:48:51 2017 Maxime JENNY
-** Last update Sun Jan 15 13:26:57 2017 Maxime JENNY
+** Last update Sun Jan 15 19:29:30 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -42,6 +42,11 @@ void		put_in_good_buffer2(t_wolf *wolf, int i, unsigned char tab[],
       my_put_pixel(wolf->text->weapf, pos->x, pos->y,
 		   my_create_color(tab[3], tab[2], tab[1], tab[0]));
     }
+  else if (i == 8)
+    {
+      my_put_pixel(wolf->text->wall, pos->x, pos->y,
+		   my_create_color(tab[3], tab[2], tab[1], tab[0]));
+    }
 }
 
 void		create_sprites_n_textures2(t_wolf *wolf, t_reader *reader)
@@ -49,12 +54,15 @@ void		create_sprites_n_textures2(t_wolf *wolf, t_reader *reader)
   wolf->text->keyt = sfTexture_create(500, 500);
   wolf->text->intert = sfTexture_create(1280, 720);
   wolf->text->weapft = sfTexture_create(1280, 720);
+  wolf->text->wallt = sfTexture_create(64, 64);
   wolf->text->keys = sfSprite_create();
   wolf->text->inters = sfSprite_create();
   wolf->text->weapfs = sfSprite_create();
+  wolf->text->wallss = sfSprite_create();
   sfSprite_setTexture(wolf->text->keys, wolf->text->keyt, sfTrue);
   sfSprite_setTexture(wolf->text->inters, wolf->text->intert, sfTrue);
   sfSprite_setTexture(wolf->text->weapfs, wolf->text->weapft, sfTrue);
+  sfSprite_setTexture(wolf->text->wallss, wolf->text->wallt, sfTrue);
   sfTexture_updateFromPixels(wolf->text->texture5, wolf->text->buffer5->pixels,
 			     64, 64, 0, 0);
   sfTexture_updateFromPixels(wolf->text->keyt, wolf->text->key->pixels,
@@ -73,6 +81,9 @@ void		set(t_wolf *wolf, t_reader *reader)
 			     1280, 720, 0, 0);
   sfTexture_updateFromPixels(wolf->text->intert, wolf->text->cp->pixels,
 			     1280, 720, 0, 0);
+  sfTexture_updateFromPixels(wolf->text->wallt, wolf->text->wall->pixels,
+			     64, 64, 0, 0);
+  cp_frambuffer(wolf->text->cp, wolf->text->inter);
 }
 
 void		draw_sprites(sfTexture *texture, sfSprite *sprite, t_wolf *wolf,

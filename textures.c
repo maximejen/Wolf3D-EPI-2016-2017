@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Mon Jan  2 17:25:22 2017 Maxime JENNY
-** Last update Fri Jan 13 18:03:37 2017 Maxime JENNY
+** Last update Sun Jan 15 19:30:46 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -30,7 +30,7 @@ void			draw_textures(t_my_framebuffer *disp, t_wolf *wolf,
   int			i;
   float			j;
 
-  x[0] = (wolf->ray->offset * 64);
+  x[0] = (wolf->ray->offset * 64) + 0 * (i = to->y - 1);
   x[1] = (wolf->ray->hor == 0) ? (15) : (0);
   hit[1] = (int)wolf->ray->hit_y + 0 * (hit[0] = (int)wolf->ray->hit_x);
   (wolf->map[hit[1]][hit[0]] == 1) ? (buff = wolf->text->buffer3) : (0);
@@ -38,7 +38,7 @@ void			draw_textures(t_my_framebuffer *disp, t_wolf *wolf,
   (wolf->map[hit[1]][hit[0]] == 'C' || wolf->map[hit[1]][hit[0]] == 'U') ?
       (buff = wolf->text->buffer4) : (0);
   (wolf->map[hit[1]][hit[0]] == 4) ? (buff = wolf->text->buffer5) : (0);
-  i = to->y - 1;
+  (wolf->map[hit[1]][hit[0]] == 7) ? (buff = wolf->text->wall) : (0);
   while (++i <= from->y)
     {
       j = ((i - to->y) * 63 / (from->y - to->y) + 1) * buff->width;
