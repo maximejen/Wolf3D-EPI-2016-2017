@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@@epitech.eu>
 **
 ** Started on  Wed Jan 11 23:19:59 2017 Maxime JENNY
-** Last update Sun Jan 15 19:44:44 2017 Maxime JENNY
+** Last update Sun Jan 15 21:37:52 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -103,9 +103,8 @@ void		draw_objects(t_my_framebuffer *display, t_wolf *wolf)
 	  angle1 = atan2(key.y, key.x);
 	  angle = (float)(angle1 - (wolf->angle * M_PI / 180));
 	  ve = calcs(key, wolf->text->key);
-	//   if (can_do_it(wolf, key, angle) == 1)
-	    draw_textu(ve, (cal_pos(wolf->text->key, angle, ve)),
-		       wolf->text->inter, wolf->text->key);
+	  draw_textu(ve, (cal_pos(wolf->text->key, angle, ve)),
+		     wolf->text->inter, wolf->text->key);
 	}
     }
 }

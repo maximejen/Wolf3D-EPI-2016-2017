@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 23:25:05 2016 Maxime JENNY
-** Last update Sun Jan 15 12:58:18 2017 Maxime JENNY
+** Last update Sun Jan 15 22:34:22 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
@@ -45,8 +45,8 @@ void		my_draw_player_in_map(sfVector2f player, float angle,
   float		scale;
   float		scale1;
 
-  scale = SCALE / wolf->width;
-  scale1 = SCALE / wolf->height;
+  scale = (SCALE / wolf->width) + 1;
+  scale1 = (SCALE / wolf->height) + 1;
   from.x = player.x * scale;
   from.y = player.y * scale1;
   from.x = (int)from.x + 0 * (from.y = (int)from.y);
@@ -118,7 +118,7 @@ void		my_draw_sky(t_my_framebuffer *display)
 }
 
 void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display,
-			     sfTexture*texture)
+			     sfTexture *texture)
 {
   sfVector2f	player;
   sfVector2i	mapSize;
@@ -127,11 +127,9 @@ void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display,
   player.x = wolf->player_x + 0 * (player.y = wolf->player_y);
   my_draw_ground(display);
   my_draw_sky(display);
-  (wolf->tog[2] == 0) ? (0) : (my_draw_walls(display, wolf, player, mapSize));
-  if (wolf->tog[3] == 1)
-    {
-      draw_minimap(wolf->map, display, wolf->width, wolf->height);
-      my_draw_player_in_map(player, wolf->angle, display, wolf);
-    }
+  my_draw_walls(display, wolf, player, mapSize);
+  draw_minimap(wolf->map, display, wolf->width, wolf->height);
+  my_draw_player_in_map(player, wolf->angle, display, wolf);
   draw_objects(display, wolf);
+  my_print(wolf, display);
 }

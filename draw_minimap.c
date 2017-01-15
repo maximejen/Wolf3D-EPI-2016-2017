@@ -5,7 +5,7 @@
 ** Login   <maxime->jenny@epitech->eu>
 **
 ** Started on  Wed Dec 21 13:01:20 2016 Maxime JENNY
-** Last update Wed Jan 11 17:21:30 2017 Maxime JENNY
+** Last update Sun Jan 15 22:29:02 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -64,7 +64,7 @@ void		put_map(int **map, sfVector2i from, sfVector2i size,
   else if (map[from.y][from.x] != 0 && map[from.y][from.x] != 'O' &&
 	   map[from.y][from.x] != 'K')
     {
-      draw_square(display, &from, &size, sfBlue);
+      draw_square(display, &from, &size, sfBlack);
     }
   else
     draw_square(display, &from, &size, sfWhite);
@@ -79,8 +79,8 @@ void		draw_minimap(int **map, t_my_framebuffer *display,
 
   from.y = 0;
   scale = SCALE;
-  size.x = scale / mapSize_x;
-  size.y = scale / mapSize_y;
+  size.x = (scale / mapSize_x) + 1;
+  size.y = (scale / mapSize_y) + 1;
   while (from.y < mapSize_y)
     {
       from.x = 0;

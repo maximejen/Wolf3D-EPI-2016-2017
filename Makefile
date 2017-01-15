@@ -5,7 +5,7 @@
 ## Login   <maxime.jenny@epitech.eu>
 ##
 ## Started on  Tue Nov 22 14:44:48 2016 Maxime JENNY
-## Last update Sun Jan 15 18:32:04 2017 Maxime JENNY
+## Last update Sun Jan 15 22:24:08 2017 Maxime JENNY
 ##
 
 SRC	=	main.c	\
@@ -31,6 +31,7 @@ SRC	=	main.c	\
 		obj.c	\
 		ob.c	\
 		event_two.c	\
+		print_numbers.c	\
 		my_strcat.c
 
 NAME	=	wolf3d
@@ -39,7 +40,7 @@ OBJ	=	$(SRC:.c=.o)
 
 FLAGS	=	-lm -lc_graph_prog -W -Wextra -Wall -Werror -pedantic
 
-CFLAGS	+=	-I./include -g
+CFLAGS	+=	-I./include
 
 all:	$(NAME)
 

@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 10:05:45 2016 Maxime JENNY
-** Last update Sun Jan 15 19:39:36 2017 Maxime JENNY
+** Last update Sun Jan 15 22:43:56 2017 Maxime JENNY
 */
 
 #ifndef WOLF_H_
@@ -18,7 +18,7 @@
 # define SCALE 175
 # define CHANGE_ANGLE 2
 
-#include <SFML/Audio.h>
+# include <SFML/Audio.h>
 
 typedef struct		s_my_framebuffer
 {
@@ -85,6 +85,20 @@ typedef struct		s_reader
   int			w;
 }			t_reader;
 
+typedef struct		s_nbrs
+{
+  int			**zero;
+  int			**one;
+  int			**two;
+  int			**three;
+  int			**four;
+  int			**five;
+  int			**six;
+  int			**seven;
+  int			**eight;
+  int			**nine;
+}			t_nbrs;
+
 typedef struct		s_wolf
 {
   int			**map;
@@ -105,6 +119,7 @@ typedef struct		s_wolf
   int			nbr_keys;
   sfMusic		*mseize;
   int			nbr_stele;
+  t_nbrs		*n;
 }			t_wolf;
 
 int		my_get_number(char *str, int *i);
@@ -125,6 +140,7 @@ void		my_draw_wolf(t_wolf *wolf, t_my_framebuffer *display,
 			     sfTexture *);
 void		reset_framebuffer(t_my_framebuffer **display, int nbr);
 int		is_esc_pressed(sfEvent *event);
+void		load_n(t_wolf *wolf);
 sfColor		my_create_color(int r, int g, int b, int a);
 void	my_draw_line_two(t_my_framebuffer *framebuffer, sfVector2i *from,
 			     sfVector2i *to, sfColor color);
@@ -167,5 +183,8 @@ void		cp_frambuffer(t_my_framebuffer *one, t_my_framebuffer *two);
 void	find_and_kill_key(int y, int x, t_wolf *wolf);
 int		can_do_it(t_wolf *wolf, sfVector2f key, float angle);
 void		check_wall(t_wolf *wolf, sfVector2f door);
+void		my_print(t_wolf *wolf, t_my_framebuffer *display);
+void	draw_square(t_my_framebuffer *display, sfVector2i *from,
+		    sfVector2i *size, sfColor color);
 
 #endif /* WOLF_H_ */

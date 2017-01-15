@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Tue Dec 13 09:17:17 2016 Maxime JENNY
-** Last update Sun Jan 15 19:41:48 2017 Maxime JENNY
+** Last update Sun Jan 15 21:28:22 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -68,6 +68,7 @@ static void	my_find_wolf(t_wolf **wolf)
     }
   (*wolf)->keys = 0;
   (*wolf)->time = 0;
+  load_n(*wolf);
 }
 
 int		my_open_file(int fd, t_wolf *wolf, char *path)

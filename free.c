@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@@epitech.eu>
 **
 ** Started on  Thu Jan 12 18:41:05 2017 Maxime JENNY
-** Last update Thu Jan 12 19:11:01 2017 Maxime JENNY
+** Last update Sun Jan 15 22:44:32 2017 Maxime JENNY
 */
 
 #include <SFML/System.h>
@@ -74,4 +74,9 @@ void	my_free(t_wolf *wolf, sfRenderWindow *window, sfSprite *sprite,
 {
   my_destroy(wolf, window, sprite, texture);
   frite(wolf);
+  if (wolf->stele == wolf->nbr_stele)
+    {
+      write(1, "Congratulations !\nYou Won.\n", 27);
+    }
+  free(wolf);
 }

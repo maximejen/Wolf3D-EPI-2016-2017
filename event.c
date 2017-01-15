@@ -5,7 +5,7 @@
 ** Login   <maxime.jenny@epitech.eu>
 **
 ** Started on  Wed Dec 21 22:46:00 2016 Maxime JENNY
-** Last update Sun Jan 15 19:34:34 2017 Maxime JENNY
+** Last update Sun Jan 15 22:21:07 2017 Maxime JENNY
 */
 
 #include <SFML/Graphics.h>
@@ -72,8 +72,6 @@ void		door_handling(t_wolf *wolf, sfVector2f p)
 
 void		what_key_is_press(sfEvent *event, t_wolf *wolf, sfVector2f p)
 {
-  if (sfKeyboard_isKeyPressed(sfKeyP))
-    (wolf->tog[3] == 1) ? (wolf->tog[3] = 0) : (wolf->tog[3] = 1);
   if (sfKeyboard_isKeyPressed(sfKeyO))
     (wolf->tog[4] == 1) ? (wolf->tog[4] = 0) : (wolf->tog[4] = 1);
   if (event->type == sfEvtMouseButtonPressed &&
