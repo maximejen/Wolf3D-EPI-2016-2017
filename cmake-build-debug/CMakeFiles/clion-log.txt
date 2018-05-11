@@ -1,4 +1,0 @@
-/home/maxime/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/173.4674.29/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/maxime/tek1/MUL/wolf3d
--- Configuring done
--- Generating done
--- Build files have been written to: /home/maxime/tek1/MUL/wolf3d/cmake-build-debug
