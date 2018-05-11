@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="wolf3d">
+				<Option output="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/wolf3d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 wolf3d"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="wolf3d/fast">
+				<Option output="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/wolf3d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/maxime/tek1/MUL/wolf3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 wolf3d/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/maxime/tek1/MUL/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/draw_minimap.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/event.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/event_two.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/free.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/include/wolf.h">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/load_texture2.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/load_texture3.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/load_textures.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/main.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/move_foward2.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/move_mouse.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/my_getnbr.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/my_str_to_wordtab.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/my_strcat.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/ob.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/obj.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/open_window.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/print_numbers.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/raycast2.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/src/move_forward.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/src/my_draw_line.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/src/my_put_pixel.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/src/raycast.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/test.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/textures.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/utility.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/wolf.c">
+			<Option target="wolf3d"/>
+		</Unit>
+		<Unit filename="/home/maxime/tek1/MUL/wolf3d/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

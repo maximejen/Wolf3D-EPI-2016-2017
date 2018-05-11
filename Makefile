@@ -38,7 +38,7 @@ NAME	=	wolf3d
 
 OBJ	=	$(SRC:.c=.o)
 
-FLAGS	=	-lm -lc_graph_prog -W -Wextra -Wall -Werror -pedantic
+FLAGS	=	-lm -W -Wextra -Wall -Werror -pedantic -lc_graph_prog
 
 CFLAGS	+=	-I./include
 

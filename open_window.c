@@ -18,7 +18,7 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics.h>
 #include <stdlib.h>
-#include "wolf.h"
+#include "include/wolf.h"
 
 /*
 ** width = Largueur de la fenêtre | height = hauteur de la fenêtre
